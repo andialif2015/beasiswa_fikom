@@ -113,10 +113,10 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
       <div class="form-group has-feedback">
-        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+        <input id="email" type="text" class="form-control @error('nisn') is-invalid @enderror" name="nisn" value="{{ old('nisn') }}" required autocomplete="nisn" autofocus>
 
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        @error('email')
+        @error('nisn')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mahasiswa;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\User;
@@ -118,5 +119,68 @@ class MahasiswaController extends Controller
                 "status" => "error"
             ]);
         }
+    }
+
+
+    public function dashboard()
+    {
+        return view('mahasiswa.dashboard');
+
+    }
+
+    public function RegisterMahasiwa(Request $request)
+    {
+
+        $this->validate($request, [
+            'name'      => 'required',
+            'nisn'      => 'required|unique:users',
+            'email'      => 'required|email|unique:users',
+            'phone'     => 'required|unique:mahasiswa',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+        ]);
+        $no_transaction = Transaction::latest()->first();
+        return $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001;
+        $length = 8;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $password = $randomString;
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'nisn' => $request->nisn,
+                'roles' => "MAHASISWA",
+                'password' => Hash::make($password),
+                'password_sementara' => $password,
+            ]);
+
+            Mahasiswa::create([
+                'user_id' => $user->id,
+                'phone' => $request->phone,
+                'tempat_lahir' => $request->tempat_lahir,
+                'tanggal_lahir' => $request->tanggal_lahir,
+                'status' => "DALAM PROSES"
+            ]);
+
+           $transaction = Transaction::create([
+                'user_id' => $user->id,
+                'no_transaction' => $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001,
+                'briva' => $no_transaction != null ? $no_transaction->briva+1 : 9992022001,
+                'nominal' => 300000,
+                'status' => "pending"
+           ]);
+            DB::commit();
+
+            return view('pageSuccess',compact('transaction'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back();
+        }
+
     }
 }

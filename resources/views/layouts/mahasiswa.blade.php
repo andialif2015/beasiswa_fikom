@@ -126,41 +126,38 @@
           </a>
          
         </li>
-        <li class="{{ setActive('admin/mahasiswa') }}">
-          <a href="{{ route('admin.mahasiswa.index') }}">
-            <i class="fa fa-users"></i> <span>Mahasiswa</span>
+       
+        <li class="{{ setActive('mahasiswa/data') }}">
+            <a href="{{ url('mahasiswa/data') }}">
+              <i class="fa fa-dashboard"></i> <span>Pilih Data</span>
+             
+            </a>
            
-          </a>
+          </li>
+          <li class="{{ setActive('mahasiswa/biodata') }}">
+            <a href="{{ url('mahasiswa/biodata') }}">
+              <i class="fa fa-dashboard"></i> <span>Isi Formulir</span>
+             
+            </a>
+           
+          </li>
+          <li class="{{ setActive('mahasiswa/uploads') }}">
+            <a href="{{ url('mahasiswa/uploads') }}">
+              <i class="fa fa-dashboard"></i> <span>Upload Berkas</span>
+             
+            </a>
+           
+          </li>
 
-         
-         
-        </li>
-        <li class="{{ setActive('admin/jurusan') }}">
-          <a href="{{ route('admin.jurusan.index') }}">
-            <i class="fa fa-users"></i> <span>Jurusan</span>
+          <li class="{{ setActive('mahasiswa/cetak') }}">
+            <a href="{{ url('mahasiswa/cetak') }}">
+              <i class="fa fa-dashboard"></i> <span>Verifikasi dan cetak kartu</span>
+             
+            </a>
            
-          </a>
-          
-        </li>
-        <li class="{{ setActive('admin/penerimaan') }}">
-          <a href="{{ route('admin.penerimaan.index') }}">
-            <i class="fa fa-users"></i> <span>Jalur Penerimaan</span>
-           
-          </a>
-          
-        </li>
-        <li class="{{ setActive('admin/transaction') }}">
-          <a href="{{ route('admin.transaction.index') }}">
-            <i class="fa fa-dollar"></i> <span>Transaksi</span>
-           
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Youtube</span>
-           
-          </a>
-        </li>
+          </li>
+       
+       
       </ul>
     </section>
     <!-- /.sidebar -->
