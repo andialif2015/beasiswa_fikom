@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\MahasiswaController;
+use App\Http\Controllers\Admin\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,5 +30,6 @@ Route::prefix('admin')
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('mahasiswa', MahasiswaController::class, ['as' => 'admin']);
         Route::resource('jurusan', JurusanController::class, ['as' => 'admin']);
+        Route::resource('transaction', TransactionController::class, ['as' => 'admin']);
     });
 Auth::routes(['register' => false]);

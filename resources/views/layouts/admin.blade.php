@@ -136,9 +136,9 @@
           </a>
           
         </li>
-        <li>
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Transaksi</span>
+        <li class="{{ setActive('admin/transaction') }}">
+          <a href="{{ route('admin.transaction.index') }}">
+            <i class="fa fa-dollar"></i> <span>Transaksi</span>
            
           </a>
         </li>
