@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\JurusanController;
+use App\Http\Controllers\Admin\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +27,7 @@ Route::prefix('admin')
     ->middleware('auth', 'admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('mahasiswa', MahasiswaController::class, ['as' => 'admin']);
+        Route::resource('jurusan', JurusanController::class, ['as' => 'admin']);
     });
 Auth::routes(['register' => false]);
