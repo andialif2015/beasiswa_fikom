@@ -20,8 +20,12 @@ class MahasiswaController extends Controller
             return DataTables::of($mahasiswa)
                 ->addIndexColumn()
                 ->addColumn('action', function ($siswa) {
-                    $actionBtn = '<a href="' . route('admin.mahasiswa.edit', $siswa->id) . '" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" onClick="Delete(this.id)" id="' . $siswa->id . '" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
+                    $actionBtn = '<a href="' . route('admin.mahasiswa.edit', $siswa->id) . '" class="edit btn btn-warning btn-sm">Edit</a> <a href="javascript:void(0)" onClick="Delete(this.id)" id="' . $siswa->id . '" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $whatsapp =' <a href="https://wa.me/'. $siswa->mahasiswa->phone .'?text=*SELAMAT%20PEMBAYARA%20ANDA%20TELAH%20KAMI%20TERIMA*%20selanjutnya%20silahkan%20anda%20melakukan%20pengisian%20data%20dan%20upload%20berkas%20dengan%20login%20pada%20alamat%20http://beasiswa.izaldev.my.id/login%20dengan%20NISN%20:'. $siswa->nisn .'%20dan%20password%20:'. $siswa->password_sementara .'" target="_blank" class="btn btn-success btn-sm">Whatsapp</a>';
+                    $transaction = '<a href="javascript:void(0)" onClick="Edit(this.id)" id="' . $siswa->id . '" class="edit btn btn-info mr-1 btn-sm">Bayar</a> ';
+
+                    // return $siswa->mahasiswa->status != "BAYAR OK" ?  $actionBtn .$whatsapp : $actionBtn;
+                    return $actionBtn .$whatsapp . $transaction;
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -140,10 +144,10 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required',
         ]);
         $no_transaction = Transaction::latest()->first();
-<<<<<<< HEAD
-=======
+// <<<<<<< HEAD
+// =======
         $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001;
->>>>>>> 7f59aa51c5487f32218c966c46512fa95121839d
+// >>>>>>> 7f59aa51c5487f32218c966c46512fa95121839d
         $length = 8;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);

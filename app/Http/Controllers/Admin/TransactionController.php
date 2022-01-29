@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 
@@ -32,8 +33,12 @@ class TransactionController extends Controller
     public function update($id)
     {
         $transaction = Transaction::findOrFail($id);
+        $mahasiswa = Mahasiswa::findOrFail($id);
         $transaction->update([
             'status' => "success"
+        ]);
+        $mahasiswa->update([
+            'status' => "BAYAR OK"
         ]);
 
         return response()->json([
