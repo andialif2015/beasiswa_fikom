@@ -47,6 +47,7 @@ Route::prefix('admin')
         Route::get('/biodata',[FormulirController::class,'biodata']);
         Route::get('/uploads',[FormulirController::class,'uploads']);
         Route::get('/cetak',[FormulirController::class,'cetakPdf']);
+        Route::POST('/cetakPDF',[FormulirController::class,'PrintPdf'])->name('PrintPDF');
        
     });
     Route::post('/register-mahasiswa', [MahasiswaController::class, 'RegisterMahasiwa'])->name('register.mahasiswa');

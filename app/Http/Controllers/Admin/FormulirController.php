@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Jurusan;
 use App\Models\Mahasiswa;
 use App\Models\Penerimaan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class FormulirController extends Controller
 {
     public function data()
@@ -45,5 +46,12 @@ class FormulirController extends Controller
     public function cetakPdf(){
         return view('mahasiswa.cetakKartu');
 
+    }
+    public function PrintPdf()
+    {
+        $user = User::with('mahasiswa','transaksi')->findOrFail(Auth::user()->id);
+        // return $user;
+        $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
+        return $pdf->stream();
     }
 }

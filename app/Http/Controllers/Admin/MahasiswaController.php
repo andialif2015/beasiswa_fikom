@@ -140,10 +140,6 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required',
         ]);
         $no_transaction = Transaction::latest()->first();
-<<<<<<< HEAD
-=======
-        $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001;
->>>>>>> 7f59aa51c5487f32218c966c46512fa95121839d
         $length = 8;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
