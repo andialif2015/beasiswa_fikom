@@ -79,6 +79,70 @@
       
     });
 
+     //aksi show modal edit
+ function Edit(id)
+        {
+            var id = id;
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            swal({
+                title: "APAKAH KAMU YAKIN ?",
+                text: "INGIN MEMBAYAR DATA INI!",
+                icon: "info",
+                buttons: [
+                    'TIDAK',
+                    'YA'
+                ],
+                dangerMode: true,
+            }).then(function(isConfirm) {
+                if (isConfirm) {
+
+                    //ajax delete
+                    jQuery.ajax({
+                        url: "transaction/"+id,
+                        data:   {
+                            id,
+                            "_token": token
+                        },
+                        type: 'PUT',
+                        success: function (response) {
+                            if (response) {
+                                swal({
+                                    title: 'BERHASIL!',
+                                    text: 'DATA BERHASIL DIUPDATE!',
+                                    icon: 'success',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    buttons: false,
+                                }).then(function() {
+                                    location.reload();
+                                });
+                               
+                            }else{
+                                swal({
+                                    title: 'GAGAL!',
+                                    text: 'DATA GAGAL DIHAPUS!',
+                                    icon: 'error',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    buttons: false,
+                                }).then(function() {
+                                    location.reload();
+                                });
+
+                            }
+                            
+                        }
+                    });
+
+                } else {
+                    return true;
+                }
+            })
+        }
+
       //aksi delete
       function Delete(id)
         {

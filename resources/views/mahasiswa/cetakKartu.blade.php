@@ -11,17 +11,18 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form method="POST" action="{{ route('PrintPDF') }}" >
+              @csrf
               <div class="box-body">
               
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Data yang diisikan pada formulir pendaftaran adalah benar dan dapat dipertanggungjawabkan
+                    <input type="checkbox" required> Data yang diisikan pada formulir pendaftaran adalah benar dan dapat dipertanggungjawabkan
                   </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                      <input type="checkbox"> Berkas / Dokumen yang saya sertakan dalam pendaftaran PMB STKIP PGRI Pacitan TA
+                      <input type="checkbox" required> Berkas / Dokumen yang saya sertakan dalam pendaftaran PMB STKIP PGRI Pacitan TA
                       2022/2023 adalah benar dan sesuai dengan berkas aslinya.
                     </label>
                   </div>
