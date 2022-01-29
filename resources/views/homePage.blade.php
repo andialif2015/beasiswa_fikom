@@ -8,7 +8,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Pendaftarab Mahasiswa Baru</title>
+     
   </head>
   <body>
     <div class="container">
@@ -22,8 +23,12 @@
             <h4 class="text-center my-4">Pendaftaran Mahasiswa Baru</h4>
             <div class="col-md-7">
                 <div class="card">
-                    <div class="card-body text-center">
-                        <h1>INI VIDEO</h1>
+                    <div class="card-body text-center embed-responsive embed-responsive-16by9">
+                      {{-- <iframe width="560" height="315" src="{{ $video->name }}?autoplay=1" title="YouTube video player" frameborder="0"  allowfullscreen></iframe> --}}
+                      @if ($video)
+                      <iframe width="560" height="345" src="{{ $video->name  }}?autoplay=1&mute=1" class="embed-responsive-item" allowfullscreen>
+                      </iframe>
+                      @endif
                     </div>
                 </div>
             </div>

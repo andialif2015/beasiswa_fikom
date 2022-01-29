@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PenerimnaanController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Models\Transaction;
+use App\Models\Video;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // $transaction= Transaction::first();
     // return view('pageSuccess',compact('transaction'));
-    return view('homePage');
+    $video = Video::latest()->first();
+    return view('homePage',compact('video'));
 });
 
 Auth::routes();
@@ -36,6 +39,7 @@ Route::prefix('admin')
         Route::resource('mahasiswa', MahasiswaController::class, ['as' => 'admin']);
         Route::resource('jurusan', JurusanController::class, ['as' => 'admin']);
         Route::resource('penerimaan', PenerimnaanController::class, ['as' => 'admin']);
+        Route::resource('video', VideoController::class, ['as' => 'admin']);
         Route::resource('transaction', TransactionController::class, ['as' => 'admin']);
     });
     Route::prefix('mahasiswa')

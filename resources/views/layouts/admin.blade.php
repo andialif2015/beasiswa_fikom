@@ -155,8 +155,8 @@
            
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li class="{{ setActive('admin/video') }}">
+          <a href="{{ route('admin.video.index') }}">
             <i class="fa fa-users"></i> <span>Youtube</span>
            
           </a>
