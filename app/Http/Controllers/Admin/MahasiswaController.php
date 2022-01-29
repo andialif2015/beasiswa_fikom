@@ -140,7 +140,6 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required',
         ]);
         $no_transaction = Transaction::latest()->first();
-        return $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001;
         $length = 8;
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
@@ -154,6 +153,7 @@ class MahasiswaController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'nisn' => $request->nisn,
+                'email' => $request->email,
                 'roles' => "MAHASISWA",
                 'password' => Hash::make($password),
                 'password_sementara' => $password,
@@ -169,7 +169,7 @@ class MahasiswaController extends Controller
 
            $transaction = Transaction::create([
                 'user_id' => $user->id,
-                'no_transaction' => $no_transaction != null ? $no_transaction->no_transaction+1 : 2022001,
+                'no_transaksi' => $no_transaction != null ? $no_transaction->no_transaksi+1 : 2022001,
                 'briva' => $no_transaction != null ? $no_transaction->briva+1 : 9992022001,
                 'nominal' => 300000,
                 'status' => "pending"
@@ -179,7 +179,7 @@ class MahasiswaController extends Controller
             return view('pageSuccess',compact('transaction'));
         } catch (\Exception $e) {
             DB::rollBack();
-            return back();
+            return back()->with('error', $e->getMessage());
         }
 
     }

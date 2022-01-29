@@ -32,6 +32,10 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
+                    <th>Nominal</th>
+                    <th>No Transaksi</th>
+                    <th>No Briva</th>
+                    <th>Status</th>
                    
                     <th>Action</th>
                 </tr>
@@ -62,7 +66,11 @@
           ajax: "{!! url()->current() !!}",
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-              {data: 'name', name: 'name'},
+              {data: 'user.name', name: 'name'},
+              {data: 'nominal', name: 'nominal'},
+              {data: 'no_transaksi', name: 'no_transaksi'},
+              {data: 'briva', name: 'briva'},
+              {data: 'status', name: 'status'},
              
               {
                   data: 'action', 
@@ -78,15 +86,63 @@
  //aksi show modal edit
  function Edit(id)
         {
-            $.ajax({
-                url: 'jurusan/'+id + '/edit',
-                dataType: 'json',
-                type: 'get',
-                success: function(hasil) {
-                $('#name').val(hasil.data.name)
-                $('#id').val(hasil.data.id)
-                   
-                $('#modal-edit').modal('show')
+            var id = id;
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            swal({
+                title: "APAKAH KAMU YAKIN ?",
+                text: "INGIN MEMBAYAR DATA INI!",
+                icon: "info",
+                buttons: [
+                    'TIDAK',
+                    'YA'
+                ],
+                dangerMode: true,
+            }).then(function(isConfirm) {
+                if (isConfirm) {
+
+                    //ajax delete
+                    jQuery.ajax({
+                        url: "transaction/"+id,
+                        data:   {
+                            id,
+                            "_token": token
+                        },
+                        type: 'PUT',
+                        success: function (response) {
+                            if (response) {
+                                swal({
+                                    title: 'BERHASIL!',
+                                    text: 'DATA BERHASIL DIUPDATE!',
+                                    icon: 'success',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    buttons: false,
+                                }).then(function() {
+                                    location.reload();
+                                });
+                               
+                            }else{
+                                swal({
+                                    title: 'GAGAL!',
+                                    text: 'DATA GAGAL DIHAPUS!',
+                                    icon: 'error',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    showCancelButton: false,
+                                    buttons: false,
+                                }).then(function() {
+                                    location.reload();
+                                });
+
+                            }
+                            
+                        }
+                    });
+
+                } else {
+                    return true;
                 }
             })
         }

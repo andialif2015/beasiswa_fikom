@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\JurusanController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use App\Http\Controllers\Admin\PenerimnaanController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    // $transaction= Transaction::first();
+    // return view('pageSuccess',compact('transaction'));
     return view('homePage');
 });
 

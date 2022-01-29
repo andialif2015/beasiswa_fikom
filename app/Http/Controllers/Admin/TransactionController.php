@@ -12,16 +12,32 @@ class TransactionController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $jurusan = Transaction::latest()->get();
+            $jurusan = Transaction::with('user')->latest()->get();
             return DataTables::of($jurusan)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
-                    $actionBtn = '<a href="javascript:void(0)" onClick="Edit(this.id)" id="' . $data->id . '" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" onClick="Delete(this.id)" id="' . $data->id . '" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
+                    $actionBtn = '<a href="javascript:void(0)" onClick="Edit(this.id)" id="' . $data->id . '" class="edit btn btn-success btn-sm">Bayar</a> ';
+                    $success = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Success</a> ';
+                    return $data->status == "pending" ?  $actionBtn : $success;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('nominal', function ($data) {
+                    return moneyFormat($data->nominal);
+                })
+                ->rawColumns(['action','nominal'])
                 ->make(true);
         }
         return view('admin.transactions.index');
+    }
+
+    public function update($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->update([
+            'status' => "success"
+        ]);
+
+        return response()->json([
+            'status' => "success"
+        ]);
     }
 }

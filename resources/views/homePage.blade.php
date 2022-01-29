@@ -13,6 +13,12 @@
   <body>
     <div class="container">
         <div class="row">
+            @if (session('error'))
+            <div class="alert alert-danger">
+            {{ session('error') }}
+      
+</div>
+@endif
             <h4 class="text-center my-4">Pendaftaran Mahasiswa Baru</h4>
             <div class="col-md-7">
                 <div class="card">

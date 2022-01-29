@@ -16,8 +16,8 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->integer('no_transaksi');
-            $table->integer('briva');
+            $table->string('no_transaksi');
+            $table->string('briva');
             $table->integer('nominal');
             $table->enum('status', ['pending', 'success', 'cancel']);
             $table->softDeletes();
