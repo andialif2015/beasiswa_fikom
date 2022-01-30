@@ -141,13 +141,13 @@
             </a>
            
           </li>
-          <li class="{{ setActive('mahasiswa/uploads') }}">
+          {{-- <li class="{{ setActive('mahasiswa/uploads') }}">
             <a href="{{ url('mahasiswa/uploads') }}">
               <i class="fa fa-dashboard"></i> <span>Upload Berkas</span>
              
             </a>
            
-          </li>
+          </li> --}}
 
           <li class="{{ setActive('mahasiswa/cetak') }}">
             <a href="{{ url('mahasiswa/cetak') }}">
