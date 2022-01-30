@@ -48,7 +48,8 @@ Route::prefix('admin')
         Route::get('/', [MahasiswaController::class, 'dashboard'])->name('dashboard.mahasiswa');
         Route::get('/data',[FormulirController::class,'data']);
         Route::post('/data',[FormulirController::class,'updateData'])->name('mahasiswa.update.data');
-        Route::get('/biodata',[FormulirController::class,'biodata']);
+        Route::get('/biodata',[FormulirController::class,'biodata'])->name('biodata.index');
+        Route::post('/biodata',[FormulirController::class,'biostore'])->name('mahasiswa.create.biodata');
         Route::get('/uploads',[FormulirController::class,'uploads']);
         Route::get('/cetak',[FormulirController::class,'cetakPdf']);
         Route::POST('/cetakPDF',[FormulirController::class,'PrintPdf'])->name('PrintPDF');

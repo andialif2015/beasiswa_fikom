@@ -16,9 +16,19 @@ class CreateBiodataTable extends Migration
         Schema::create('biodata', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->string('tahun_lulus');
-            $table->string('asal_sekolah');
-            $table->string('npsm');
+            $table->string('nik');
+            $table->string('name');
+            $table->string('pas_photo');
+            $table->string('jenis_kelamin');
+            $table->string('tanggal_lahir');
+            $table->string('tempat_lahir');
+            $table->string('agama');
+            $table->integer('anak');
+            $table->integer('jumlah_saudara');
+            $table->integer('status_sipil');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('rekomendasi');
             $table->softDeletes();
             $table->timestamps();
         });

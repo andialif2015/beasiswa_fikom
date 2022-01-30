@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRencanaTable extends Migration
+class CreatePemilikkartuTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateRencanaTable extends Migration
      */
     public function up()
     {
-        Schema::create('rencana', function (Blueprint $table) {
+        Schema::create('pemilikkartu', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
-            $table->string('rencana_tinggal');
-            $table->string('transport');
-            $table->string('jarak_tempuh');
-            $table->string('asal_pembiayaan');
+            $table->string('noKK');
+            $table->string('nama_kk');
+            $table->string('kip')->nullable();
+            $table->string('kks')->nullable();
+            $table->string('pkh')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ class CreateRencanaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rencana');
+        Schema::dropIfExists('pemilikkartu');
     }
 }

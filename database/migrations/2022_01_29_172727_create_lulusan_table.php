@@ -16,6 +16,10 @@ class CreateLulusanTable extends Migration
         Schema::create('lulusan', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->string('nisn');
+            $table->string('tahun_lulus');
+            $table->string('asal_sekolah');
+            $table->string('npsn');
             $table->softDeletes();
             $table->timestamps();
         });
