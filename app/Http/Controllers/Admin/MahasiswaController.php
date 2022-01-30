@@ -62,6 +62,7 @@ class MahasiswaController extends Controller
             'phone' => $request->phone,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('admin.mahasiswa.index')->with('success', 'data berhasil disimpan');
