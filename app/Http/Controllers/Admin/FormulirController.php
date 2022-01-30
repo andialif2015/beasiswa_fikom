@@ -21,10 +21,10 @@ class FormulirController extends Controller
         return view('mahasiswa.data',compact('penerimaan','jurusan','mahasiswa'));
     }
 
-    public function updateData(request $request)
+    public function updateData(Request $request)
     {
+        dd(request()->all());
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
-
         $mahasiswa->update([
             'jurusan_id' => request()->jurusan_id,
             'penerimaan_id' => request()->penerimaan_id,

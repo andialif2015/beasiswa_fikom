@@ -33,6 +33,7 @@
                     <th>No</th>
                     <th>Nisn</th>
                     <th>Name</th>
+                    <th>Briva</th>
                     <th>Phone</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -66,6 +67,7 @@
               {data: 'DT_RowIndex', name: 'DT_RowIndex'},
               {data: 'nisn', name: 'nisn'},
               {data: 'name', name: 'name'},
+              {data: 'transaksi.briva', name: 'phone'},
               {data: 'mahasiswa.phone', name: 'phone'},
               {data: 'mahasiswa.status', name: 'phone'},
               {

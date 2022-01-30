@@ -37,14 +37,15 @@
                             <span class="help-block">{{ $message }}</span>
                            @enderror
                           </div>
+                          
                           <input name="user_id" type="hidden" value="{{ Auth::user()->id}}">
                           {{-- KIP --}}
-                          <div id="{{ $penerimaan[0]->id}}" style="display: none">
+                          <div id="{{ $penerimaan[0]->id}}">
                             <div class="row">
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
-                                  <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <label for="kartuKeluarga">Kartu Keluarga</label>
+                                  <input type="file" name="kartu_keluarga">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -130,7 +131,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file"  class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -189,7 +190,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file" class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -248,7 +249,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file" class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -307,7 +308,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file" class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -375,7 +376,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file"  class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -434,7 +435,7 @@
                               <div class="col-lg-4">
                                 <div class="form-group @error('kartu_keluarga') has-error @enderror">
                                   <label for="exampleInputEmail1">Kartu Keluarga</label>
-                                  <input type="file" name="kartu_keluarga" class="form-control">
+                                  <input type="file"  class="form-control">
                                   @error('kartu_keluarga')
                                   <span class="help-block">{{ $message }}</span>
                                 @enderror
@@ -496,7 +497,7 @@
                               </div>
                             </div>
                           </div>
-                        <button type="submit"  {{ $mahasiswa->jurusan_id != null ? "disabled" : "" }}  class="btn btn-primary" id="simpan">Simpan</button>
+                        <button type="submit"   class="btn btn-primary" id="simpan">Simpan</button>
                       </form>
                  
              </div>
@@ -522,67 +523,67 @@ $("#penerimaan").change(function()
   var dataString = 'id='+ id;
   console.log(dataString);
 
-  if(id == 1){
-      $('#{{ $penerimaan[0]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }if(id==2){
-       $('#{{ $penerimaan[1]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }if(id==3){
-       $('#{{ $penerimaan[2]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }
-  if(id==4){
-       $('#{{ $penerimaan[3]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }
-  if(id==5){
-       $('#{{ $penerimaan[4]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }
-  if(id==6){
-       $('#{{ $penerimaan[5]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-       $('#{{ $penerimaan[6]->id}}').css("display","none");
-  }
-  if(id==7){
-       $('#{{ $penerimaan[6]->id}}').removeAttr( 'style' );
-       $('#{{ $penerimaan[1]->id}}').css("display","none");
-       $('#{{ $penerimaan[2]->id}}').css("display","none");
-       $('#{{ $penerimaan[3]->id}}').css("display","none");
-       $('#{{ $penerimaan[4]->id}}').css("display","none");
-       $('#{{ $penerimaan[5]->id}}').css("display","none");
-       $('#{{ $penerimaan[0]->id}}').css("display","none");
-  }
+  // if(id == 1){
+  //     $('#{{ $penerimaan[0]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }if(id==2){
+  //      $('#{{ $penerimaan[1]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }if(id==3){
+  //      $('#{{ $penerimaan[2]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }
+  // if(id==4){
+  //      $('#{{ $penerimaan[3]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }
+  // if(id==5){
+  //      $('#{{ $penerimaan[4]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }
+  // if(id==6){
+  //      $('#{{ $penerimaan[5]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[6]->id}}').css("display","none");
+  // }
+  // if(id==7){
+  //      $('#{{ $penerimaan[6]->id}}').removeAttr( 'style' );
+  //      $('#{{ $penerimaan[1]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[2]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[3]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[4]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[5]->id}}').css("display","none");
+  //      $('#{{ $penerimaan[0]->id}}').css("display","none");
+  // }
 
   });
 
