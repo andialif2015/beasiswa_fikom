@@ -65,11 +65,11 @@
                         <label for="exampleInputPassword1">Status</label>
                         <select name="status" class="form-control" id="">
                           <option value="">Pilih Status</option>
-                          <option value="DALAM PROSES" {{ $mahasiswa->status == "DALAM PROSES" ? "selected" : "" }}>DALAM PROSES</option>
-                          <option value="BAYAR OK {{ $mahasiswa->status == "BAYAR OK" ? "selected" : "" }}">BAYAR OK</option>
-                          <option value="BERKAS LENGKAP" {{ $mahasiswa->status == "BERKAS LENGKAP" ? "selected" : "" }}>BERKAS LENGKAP</option>
-                          <option value="TEST" {{ $mahasiswa->status == "DITERIMA" ? "selected" : "" }}>TES</option>
-                          <option value="DITOLAK" {{ $mahasiswa->status == "DITOLAK" ? "selected" : "" }}>DITOLAK</option>
+                          <option value="DALAM PROSES" {{ $mahasiswa->mahasiswa->status == "DALAM PROSES" ? "selected" : "" }}>DALAM PROSES</option>
+                          <option value="BAYAR OK {{ $mahasiswa->mahasiswa->status == "BAYAR OK" ? "selected" : "" }}">BAYAR OK</option>
+                          <option value="BERKAS LENGKAP" {{ $mahasiswa->mahasiswa->status == "BERKAS LENGKAP" ? "selected" : "" }}>BERKAS LENGKAP</option>
+                          <option value="TEST" {{ $mahasiswa->mahasiswa->status == "DITERIMA" ? "selected" : "" }}>TES</option>
+                          <option value="DITOLAK" {{ $mahasiswa->mahasiswa->status == "DITOLAK" ? "selected" : "" }}>DITOLAK</option>
                         </select>
                         @error('status')
                         <span class="help-block">{{ $message }}</span>
