@@ -80,7 +80,7 @@
     });
 
      //aksi show modal edit
- function Edit(id)
+ function Bayar(id)
         {
             var id = id;
             var token = $("meta[name='csrf-token']").attr("content");

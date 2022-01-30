@@ -126,7 +126,7 @@
                             }else{
                                 swal({
                                     title: 'GAGAL!',
-                                    text: 'DATA GAGAL DIHAPUS!',
+                                    text: 'DATA GAGAL DIUPDATE!',
                                     icon: 'error',
                                     timer: 3000,
                                     showConfirmButton: false,

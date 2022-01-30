@@ -33,7 +33,8 @@ class TransactionController extends Controller
     public function update($id)
     {
         $transaction = Transaction::findOrFail($id);
-        $mahasiswa = Mahasiswa::findOrFail($id);
+        $mahasiswa = Mahasiswa::where('user_id',$transaction->user_id)->first();
+        // return $mahasiswa;
         $transaction->update([
             'status' => "success"
         ]);
