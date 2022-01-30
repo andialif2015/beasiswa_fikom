@@ -30,7 +30,7 @@
                           <div class="tab-pane active" id="tab_1">
                             <div class="box-body">
               
-                                <form action="{{ route('admin.mahasiswa.store') }}" method="post">
+                                <form action="{{ route('admin.mahasiswa.store') }}" method="post" enctype="multipart/form-data">
                                  @csrf
                                     <div class="form-group @error('nisn') has-error @enderror">
                                       <label for="exampleInputEmail1">NIK</label>
@@ -48,7 +48,7 @@
                                      </div>
                                     <div class="form-group @error('tempat_lahir') has-error @enderror">
                                       <label for="exampleInputPassword1">Upload Photo 3x 4</label>
-                                      <input type="text" class="form-control " name="tempat_lahir" value="{{ old('tempat_lahir') }}"  placeholder="Masukan Tempat lahir">
+                                      <input type="file" class="form-control " name="tempat_lahir" value="{{ old('tempat_lahir') }}"  placeholder="Masukan Tempat lahir">
                                       @error('tempat_lahir')
                                       <span class="help-block">{{ $message }}</span>
                                          @enderror
@@ -121,6 +121,20 @@
                                   <div class="form-group @error('phone') has-error @enderror ">
                                     <label for="exampleInputPassword1">Email   </label>
                                     <input type="number" class="form-control " name="phone" value="{{ old('phone') }}" placeholder="Masukan Tempat lahir">
+                                    @error('phone')
+                                    <span class="help-block">{{ $message }}</span>
+                                    
+                                    @enderror
+                                  </div>
+                                  
+                                  <div class="form-group @error('phone') has-error @enderror ">
+                                    <label for="exampleInputPassword1">Rekomendasi   </label>
+                                    <select name="rekomendasi" class="form-control">
+                                      <option value="DOSEN">DOSEN</option>
+                                      <option value="MAHASISWA">MAHASISWA</option>
+                                      <option value="KARYAWAN">KARYAWAN</option>
+                                      <option value="ALUMNI">ALUMNI</option>
+                                    </select>
                                     @error('phone')
                                     <span class="help-block">{{ $message }}</span>
                                     
