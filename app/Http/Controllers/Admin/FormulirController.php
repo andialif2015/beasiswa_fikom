@@ -28,54 +28,85 @@ class FormulirController extends Controller
 
     public function updateData(Request $request)
     {
-        dd(request()->all());
+        
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
 
-        // $mahasiswa->update([
-        //     'jurusan_id' => request()->jurusan_id,
-        //     'penerimaan_id' => request()->penerimaan_id,
-        // ]);
+        
         $mahasiswa->update([
             'jurusan_id' => request()->jurusan_id,
             'penerimaan_id' => request()->penerimaan_id,
         ]);
 
         $data = request()->all();
-        dd($data);
+        
 
-        // $data['kartu_keluarga'] = $request->file('kartu_keluarga')->store('assets/attachment','public');
-        // $data['nisn'] = $request->file('nisn')->store('assets/store','public');
-        // $data['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('assets/store','public');
-        // $data['pas_poto'] = $request->file('pas_poto')->store('assets/store','public');
-        // $data['rapor'] = $request->file('rapor')->store('assets/store','public');
-        // $data['kip'] = $request->file('kip')->store('assets/store','public');
-        // $data['prestasi'] = $request->file('prestasi')->store('assets/store','public');
-        // $data['sktm'] = $request->file('sktm')->store('assets/store','public');
-        // $data['ktp_ortu'] = $request->file('ktp_ortu')->store('assets/store','public');
-        // $data['ijazah'] = $request->file('ijazah')->store('assets/store','public');
-        // $data['skot'] = $request->file('skot')->store('assets/store','public');
-        // $data['hafidz'] = $request->file('hafidz')->store('assets/store','public');
+       if($request->kartu_keluarga){
+            $data['kartu_keluarga'] = $request->file('kartu_keluarga')->store('assets/attachment','public');
+       }
+       if($request->nisn){
+            $data['nisn'] = $request->file('nisn')->store('assets/store','public');
+       }
+       if($request->bukti_pembayaran){
+        $data['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('assets/store','public');
 
-        // Attachments::updateOrCreate(
-        //     [
-        //         'user_id' => $request->user_id
-        //     ],
-        //     [
-        //         'penerimaan_id' => $request->penerimaan_id,
-        //         'kartu_keluarga' => $data['kartu_keluarga'],
-        //         'nisn' => $data['nisn'],
-        //         'bukti_pembayaran' => $data['bukti_pembayaran'],
-        //         'pas_poto' => $data['pas_poto'],
-        //         'rapor' => $data['rapor'],
-        //         'kip' => $data['kip'],
-        //         'prestasi' => $data['prestasi'],
-        //         'sktm' => $data['sktm'],
-        //         'ktp_ortu' => $data['ktp_ortu'],
-        //         'ijazah' => $data['ijazah'],
-        //         'skot' => $data['skot'],
-        //         'hafidz' => $data['hafidz'],
-        //     ]
-        // );
+       }
+       if($request->pas_poto){
+           $data['pas_poto'] = $request->file('pas_poto')->store('assets/store','public');
+
+       }
+       if($request->rapor){
+
+           $data['rapor'] = $request->file('rapor')->store('assets/store','public');
+       }
+       if($request->kip){
+
+           $data['kip'] = $request->file('kip')->store('assets/store','public');
+       }
+       if($request->prestasu){
+           $data['prestasi'] = $request->file('prestasi')->store('assets/store','public');
+
+       }
+       if($request->sktm){
+
+           $data['sktm'] = $request->file('sktm')->store('assets/store','public');
+       }
+       if($request->ktp_ortu){
+
+           $data['ktp_ortu'] = $request->file('ktp_ortu')->store('assets/store','public');
+       }
+       if($request->ijazah){
+           $data['ijazah'] = $request->file('ijazah')->store('assets/store','public');
+
+       }
+       if($request->skot){
+           $data['skot'] = $request->file('skot')->store('assets/store','public');
+
+       }
+       if($request->hafidz){
+           $data['hafidz'] = $request->file('hafidz')->store('assets/store','public');
+
+       }
+
+        Attachments::updateOrCreate(
+            [
+                'user_id' => $request->user_id
+            ],
+            [
+                'penerimaan_id' => $request->penerimaan_id,
+                'kartu_keluarga' => $data['kartu_keluarga'],
+                'nisn' => $data['nisn'],
+                'bukti_pembayaran' => $data['bukti_pembayaran'],
+                'pas_poto' => $data['pas_poto'],
+                'rapor' => $data['rapor'],
+                'kip' => $data['kip'],
+                'prestasi' => $data['prestasi'],
+                'sktm' => $data['sktm'],
+                'ktp_ortu' => $data['ktp_ortu'],
+                'ijazah' => $data['ijazah'],
+                'skot' => $data['skot'],
+                'hafidz' => $data['hafidz'],
+            ]
+        );
 
         return back()->with('success','berhasil disimpan');
     }
@@ -155,7 +186,52 @@ class FormulirController extends Controller
     {
         $user = User::with('mahasiswa','transaksi')->findOrFail(Auth::user()->id);
         // return $user;
-        // $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
-        // return $pdf->stream();
+        $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
+        return $pdf->stream();
+    }
+
+    public function Profile()
+    {
+        $profile = Auth::user();
+        return view('mahasiswa.profile',compact('profile'));
+    }
+
+    public function UpdateProfile(Request $request,$id)
+    {
+        $user = User::findOrFail($id);
+        // return $request->all();
+        $this->validate($request, [
+            'name'      => 'required',
+            'email'     => 'required|email|unique:users,email,' . $user->id,
+            'password'  => 'confirmed'
+        ]);
+
+        $mahasiswa = Mahasiswa::where('user_id', $id)->first();
+        if ($request->input('password') == "") {
+            $user->update([
+                'name' => $request->name,
+                'nisn' => $request->nisn,
+                'email' => $request->email,
+            ]);
+        } else {
+           
+            $user->update([
+                'name'      => $request->input('name'),
+                'email'     => $request->input('email'),
+                'nisn' => $request->nisn,
+                'password'  => bcrypt($request->input('password')),
+                'password_sementara'  => $request->input('password')
+            ]);
+        }
+        
+
+        $mahasiswa->update([
+            'phone' => $request->phone,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'status' => $user->mahasiswa->status,
+        ]);
+
+        return redirect()->route('dashboard.mahasiswa')->with('success','data berhasil disimpan');
     }
 }

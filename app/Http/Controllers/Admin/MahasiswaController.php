@@ -70,7 +70,6 @@ class MahasiswaController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $this->validate($request, [
             'name'      => 'required',
             'nisn'      => 'required|unique:users',

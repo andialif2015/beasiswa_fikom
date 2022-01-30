@@ -54,6 +54,8 @@ Route::prefix('admin')
         Route::post('/biodata',[FormulirController::class,'biostore'])->name('mahasiswa.create.biodata');
         Route::get('/uploads',[FormulirController::class,'uploads']);
         Route::get('/cetak',[FormulirController::class,'cetakPdf']);
+        Route::get('/profile',[FormulirController::class,'Profile'])->name('profile.mahasiswa');
+        Route::PUT('/profile-update/{id}',[FormulirController::class,'UpdateProfile'])->name('update.profile.mahasiswa');
         Route::POST('/cetakPDF',[FormulirController::class,'PrintPdf'])->name('PrintPDF');
        
     });
