@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Transaction::class);
     }
+
+    public function attact()
+    {
+        return $this->hasOne(Attachments::class);
+    }
 }

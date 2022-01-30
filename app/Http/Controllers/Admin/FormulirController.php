@@ -26,14 +26,19 @@ class FormulirController extends Controller
         return view('mahasiswa.data',compact('penerimaan','jurusan','mahasiswa'));
     }
 
-    public function updateData()
+    public function updateData(Request $request)
     {
+        dd(request()->all());
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
 
         // $mahasiswa->update([
         //     'jurusan_id' => request()->jurusan_id,
         //     'penerimaan_id' => request()->penerimaan_id,
         // ]);
+        $mahasiswa->update([
+            'jurusan_id' => request()->jurusan_id,
+            'penerimaan_id' => request()->penerimaan_id,
+        ]);
 
         $data = request()->all();
         dd($data);
@@ -150,7 +155,7 @@ class FormulirController extends Controller
     {
         $user = User::with('mahasiswa','transaksi')->findOrFail(Auth::user()->id);
         // return $user;
-        $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
-        return $pdf->stream();
+        // $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
+        // return $pdf->stream();
     }
 }
