@@ -103,6 +103,15 @@ class MahasiswaController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'status' => "DALAM PROSES"
             ]);
+             $no_transaction = Transaction::latest()->first();
+
+            $transaction = Transaction::create([
+                'user_id' => $user->id,
+                'no_transaksi' => $no_transaction != null ? $no_transaction->no_transaksi+1 : 2022001,
+                'briva' => $no_transaction != null ? $no_transaction->briva+1 : 9992022001,
+                'nominal' => 300000,
+                'status' => "pending"
+           ]);
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
