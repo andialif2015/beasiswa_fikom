@@ -25,10 +25,11 @@ class CreateBiodataTable extends Migration
             $table->string('agama');
             $table->integer('anak');
             $table->integer('jumlah_saudara');
-            $table->integer('status_sipil');
+            $table->string('status_sipil');
             $table->string('phone');
             $table->string('email');
-            $table->string('rekomendasi');
+            $table->string('pemberi_rekomendasi');
+            $table->string('nama_rekomendasi');
             $table->softDeletes();
             $table->timestamps();
         });

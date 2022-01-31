@@ -131,18 +131,27 @@
                                     @enderror
                                   </div>
                                   
-                                  <div class="form-group @error('rekomendasi') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Rekomendasi   </label>
-                                    <select name="rekomendasi" class="form-control">
+                                  <div class="form-group @error('pemberi_rekomendasi') has-error @enderror ">
+                                    <label for="exampleInputPassword1">Pemberi Rekomendasi   </label>
+                                    <select name="pemberi_rekomendasi" class="form-control">
                                       <option value="DOSEN">DOSEN</option>
                                       <option value="MAHASISWA">MAHASISWA</option>
                                       <option value="KARYAWAN">KARYAWAN</option>
                                       <option value="ALUMNI">ALUMNI</option>
                                     </select>
-                                    @error('rekomendasi')
+                                    @error('pemberi_rekomendasi')
                                     <span class="help-block">{{ $message }}</span>
                                     
                                     @enderror
+
+                                    <div class="form-group @error('nama_rekomendasi') has-error @enderror ">
+                                    <label for="exampleInputPassword1">Nama Rekomendasi   </label>
+                                    <input class="form-control" name="nama_rekomendasi" type="text">
+                                    @error('nama_rekomendasi')
+                                    <span class="help-block">{{ $message }}</span>
+                                    
+                                    @enderror
+
                                   </div>
                                     <button type="submit" class="btn btn-primary">Daftar Mahasiswa</button>
                                   </form>
