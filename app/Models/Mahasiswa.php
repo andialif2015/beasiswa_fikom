@@ -12,4 +12,8 @@ class Mahasiswa extends Model
 
     protected $table = "mahasiswa";
     protected $guarded = ["id"];
+     public function jurusan()
+    {
+        return $this->hasOne(Jurusan::class,'id','jurusan_id');
+    }
 }

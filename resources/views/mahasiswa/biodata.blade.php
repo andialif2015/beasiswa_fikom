@@ -28,136 +28,133 @@
                         </ul>
                         <div class="tab-content">
                           <div class="tab-pane active" id="tab_1">
-                            <div class="box-body">
-              
+                              <div class="box-body">
+                
                                 <form action="{{ route('mahasiswa.create.biodata') }}" method="post" enctype="multipart/form-data">
-                                 @csrf
-                                    <div class="form-group @error('nik') has-error @enderror">
-                                      <label for="exampleInputEmail1">NIK</label>
-                                      <input type="number" class="form-control " value="{{ old('nik') ?? $biodata == null ? '' : $biodata->nik  }}"  name="nik" placeholder="Masukan NIK">
-                                      @error('nik')
+                                  @csrf
+                                      <div class="form-group @error('nik') has-error @enderror">
+                                        <label for="exampleInputEmail1">NIK</label>
+                                        <input type="number" class="form-control " value="{{ old('nik') ?? $biodata == null ? '' : $biodata->nik  }}"  name="nik" placeholder="Masukan NIK">
+                                        @error('nik')
+                                        <span class="help-block">{{ $message }}</span>
+                                      @enderror
+                                      </div>
+                                      <div class="form-group @error('name') has-error @enderror">
+                                        <label for="exampleInputEmail1">Nama Lengkap (Sesuai KTP)</label>
+                                        <input type="text" class="form-control" name="name" value="{{ old('name') ?? $biodata == null ? '' : $biodata->name }}"  placeholder="Masukan Nama lengkap">
+                                        @error('name')
+                                        <span class="help-block">{{ $message }}</span>
+                                          @enderror
+                                      </div>
+                                      <div class="form-group @error('pas_photo') has-error @enderror">
+                                        <label for="exampleInputPassword1">Upload Photo 3x 4</label>
+                                        <input type="file" class="form-control " name="pas_photo" value="{{ old('pas_photo') }}"  >
+                                        @error('pas_photo')
+                                        <span class="help-block">{{ $message }}</span>
+                                          @enderror
+              
+                                      </div>
+                                      <div class="form-group @error('jenis_kelamin') has-error @enderror">
+                                      <label for="exampleInputPassword1">Jenis Kelamin </label>
+                                      <select class="form-control" name="jenis_kelamin">
+                                        <option value="Perempuan">Perempuan</option> 
+                                        <option value="Laki-Laki">Laki-Laki</option> 
+                                      </select>
+                                      {{-- <input type="date" class="form-control " name="jenis_kelamin"  value="{{ old('jenis_kelamin') }}" placeholder="Masukan Tempat lahir"> --}}
+                                      @error('jenis_kelamin')
                                       <span class="help-block">{{ $message }}</span>
-                                     @enderror
+                                      @enderror
+              
                                     </div>
-                                    <div class="form-group @error('name') has-error @enderror">
-                                       <label for="exampleInputEmail1">Nama Lengkap (Sesuai KTP)</label>
-                                       <input type="text" class="form-control" name="name" value="{{ old('name') ?? $biodata == null ? '' : $biodata->name }}"  placeholder="Masukan Nama lengkap">
-                                       @error('name')
-                                       <span class="help-block">{{ $message }}</span>
-                                         @enderror
-                                     </div>
-                                    <div class="form-group @error('pas_photo') has-error @enderror">
-                                      <label for="exampleInputPassword1">Upload Photo 3x 4</label>
-                                      <input type="file" class="form-control " name="pas_photo" value="{{ old('pas_photo') }}"  >
-                                      @error('pas_photo')
+                                    <div class="form-group @error('tempat_lahir') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Tempat Lahir</label>
+                                      <input type="text" class="form-control " name="tempat_lahir" value="{{ old('tempat_lahir') ?? $biodata == null ? '' : $biodata->tempat_lahir }}" placeholder="Masukan Tempat lahir">
+                                      @error('tempat_lahir')
                                       <span class="help-block">{{ $message }}</span>
-                                         @enderror
-             
+                                      
+                                      @enderror
                                     </div>
-                                    <div class="form-group @error('jenis_kelamin') has-error @enderror">
-                                     <label for="exampleInputPassword1">Jenis Kelamin </label>
-                                     <select class="form-control" name="jenis_kelamin">
-                                      <option value="Perempuan">P</option> 
-                                      <option value="Laki-Laki">L</option> 
-                                    </select>
-                                     {{-- <input type="date" class="form-control " name="jenis_kelamin"  value="{{ old('jenis_kelamin') }}" placeholder="Masukan Tempat lahir"> --}}
-                                     @error('jenis_kelamin')
-                                     <span class="help-block">{{ $message }}</span>
-                                     @enderror
-             
-                                   </div>
-                                   <div class="form-group @error('tempat_lahir') has-error @enderror ">
-                                     <label for="exampleInputPassword1">Tempat Lahir</label>
-                                     <input type="text" class="form-control " name="tempat_lahir" value="{{ old('tempat_lahir') ?? $biodata == null ? '' : $biodata->tempat_lahir }}" placeholder="Masukan Tempat lahir">
-                                     @error('tempat_lahir')
-                                     <span class="help-block">{{ $message }}</span>
-                                     
-                                     @enderror
-                                   </div>
-                                   <div class="form-group @error('tanggal_lahir') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Tanggal Lahir</label>
-                                    <input type="date" class="form-control " name="tanggal_lahir" value="{{ old('tanggal_lahir') ?? $biodata == null ? '' : $biodata->tanggal_lahir }}" placeholder="Masukan Tanggal lahir">
-                                    @error('tanggal_lahir')
-                                    <span class="help-block">{{ $message }}</span>
+                                    <div class="form-group @error('tanggal_lahir') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Tanggal Lahir</label>
+                                      <input type="date" class="form-control " name="tanggal_lahir" value="{{ old('tanggal_lahir') ?? $biodata == null ? '' : $biodata->tanggal_lahir }}" placeholder="Masukan Tanggal lahir">
+                                      @error('tanggal_lahir')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('agama') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Agama</label>
+                                      <input type="text" class="form-control " name="agama" value="{{ old('agama') ?? $biodata == null ? '' : $biodata->agama }}" placeholder="Masukan Agama">
+                                      @error('agama')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('anak') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Anak</label>
+                                      <input type="number" class="form-control " name="anak" value="{{ old('anak') ?? $biodata == null ? '' : $biodata->anak }}" placeholder="Masukan Anak Ke berapa">
+                                      @error('anak')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('jumlah_saudara') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Jumlah Saudara </label>
+                                      <input type="number" class="form-control " name="jumlah_saudara" value="{{ old('jumlah_saudara') ?? $biodata == null ? '' : $biodata->jumlah_saudara }}" placeholder="Masukan Jumlah Saudara">
+                                      @error('jumlah_saudara')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('status_sipil') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Status Sipil  </label>
+                                      <input type="text" class="form-control " name="status_sipil" value="{{ old('status_sipil') ?? $biodata == null ? '' : $biodata->status_sipil}}" placeholder="Masukan Status Sipil">
+                                      @error('status_sipil')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('phone') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Nomor Hp  </label>
+                                      <input type="number" class="form-control " name="phone" value="{{ old('phone') ?? $biodata == null ? '' : $biodata->phone }}" placeholder="Masukan Nomor Handphone">
+                                      @error('phone')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
+                                    <div class="form-group @error('email') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Email   </label>
+                                      <input type="email" class="form-control " name="email" value="{{ old('email') ?? $biodata == null ? '' : $biodata->email }}" placeholder="Masukan E-Mail">
+                                      @error('email')
+                                      <span class="help-block">{{ $message }}</span>
+                                      
+                                      @enderror
+                                    </div>
                                     
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('agama') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Agama</label>
-                                    <input type="text" class="form-control " name="agama" value="{{ old('agama') ?? $biodata == null ? '' : $biodata->agama }}" placeholder="Masukan Agama">
-                                    @error('agama')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('anak') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Anak</label>
-                                    <input type="number" class="form-control " name="anak" value="{{ old('anak') ?? $biodata == null ? '' : $biodata->anak }}" placeholder="Masukan Anak Ke berapa">
-                                    @error('anak')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('jumlah_saudara') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Jumlah Saudara </label>
-                                    <input type="number" class="form-control " name="jumlah_saudara" value="{{ old('jumlah_saudara') ?? $biodata == null ? '' : $biodata->jumlah_saudara }}" placeholder="Masukan Jumlah Saudara">
-                                    @error('jumlah_saudara')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('status_sipil') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Status Sipil  </label>
-                                    <input type="text" class="form-control " name="status_sipil" value="{{ old('status_sipil') ?? $biodata == null ? '' : $biodata->status_sipil}}" placeholder="Masukan Status Sipil">
-                                    @error('status_sipil')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('phone') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Nomor Hp  </label>
-                                    <input type="number" class="form-control " name="phone" value="{{ old('phone') ?? $biodata == null ? '' : $biodata->phone }}" placeholder="Masukan Nomor Handphone">
-                                    @error('phone')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  <div class="form-group @error('email') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Email   </label>
-                                    <input type="email" class="form-control " name="email" value="{{ old('email') ?? $biodata == null ? '' : $biodata->email }}" placeholder="Masukan E-Mail">
-                                    @error('email')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-                                  </div>
-                                  
-                                  <div class="form-group @error('pemberi_rekomendasi') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Pemberi Rekomendasi   </label>
-                                    <select name="pemberi_rekomendasi" class="form-control">
-                                      <option value="DOSEN">DOSEN</option>
-                                      <option value="MAHASISWA">MAHASISWA</option>
-                                      <option value="KARYAWAN">KARYAWAN</option>
-                                      <option value="ALUMNI">ALUMNI</option>
-                                    </select>
-                                    @error('pemberi_rekomendasi')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
+                                    <div class="form-group @error('pemberi_rekomendasi') has-error @enderror ">
+                                      <label for="exampleInputPassword1">Pemberi Rekomendasi   </label>
+                                      <select name="pemberi_rekomendasi" class="form-control">
+                                        <option value="DOSEN">DOSEN</option>
+                                        <option value="MAHASISWA">MAHASISWA</option>
+                                        <option value="KARYAWAN">KARYAWAN</option>
+                                        <option value="ALUMNI">ALUMNI</option>
+                                      </select>
+                                      @error('pemberi_rekomendasi')
+                                      <span class="help-block">{{ $message }}</span>
+                                      @enderror
+                                    </div>
 
-                                    <div class="form-group @error('nama_rekomendasi') has-error @enderror ">
-                                    <label for="exampleInputPassword1">Nama Rekomendasi   </label>
-                                    <input class="form-control" name="nama_rekomendasi" type="text">
-                                    @error('nama_rekomendasi')
-                                    <span class="help-block">{{ $message }}</span>
-                                    
-                                    @enderror
-
-                                  </div>
+                                      <div class="form-group @error('nama_rekomendasi') has-error @enderror ">
+                                        <label for="exampleInputPassword1">Nama Rekomendasi</label>
+                                        <input class="form-control" name="nama_rekomendasi" type="text">
+                                          @error('nama_rekomendasi')
+                                            <span class="help-block">{{ $message }}</span>
+                                          @enderror
+                                      </div>
                                     <button type="submit" class="btn btn-primary">Daftar Mahasiswa</button>
-                                  </form>
-                             
-                         </div>
-                          </div>
+                                </form>
+                              </div>
+                            </div>
                           <!-- /.tab-pane -->
                           <div class="tab-pane" id="tab_2">
                             <div class="box-body">

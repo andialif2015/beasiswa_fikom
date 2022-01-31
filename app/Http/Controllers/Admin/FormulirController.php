@@ -22,15 +22,15 @@ class FormulirController extends Controller
     {
         $penerimaan = Penerimaan::all();
         $jurusan = Jurusan::all();
-        $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
-        return view('mahasiswa.data',compact('penerimaan','jurusan','mahasiswa'));
+        $mahasiswa = Mahasiswa::with(['jurusan'])->where('user_id',Auth::user()->id)->first();
+        $attachment = Attachments::with(['penerimaan'])->where('user_id',Auth::user()->id)->first();
+        return view('mahasiswa.data',compact('penerimaan','jurusan','mahasiswa','attachment'));
     }
 
     public function updateData(Request $request)
     {
         
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
-        return $request->all();
         
         $mahasiswa->update([
             'jurusan_id' => request()->jurusan_id,
@@ -52,7 +52,8 @@ class FormulirController extends Controller
        }
        if($request->ijazah){
         $data['ijazah'] = $request->file('ijazah')->store('assets/store','public');
-
+       }else{
+           $data['ijazah'] = null;
        }
        if($request->pas_poto){
            $data['pas_poto'] = $request->file('pas_poto')->store('assets/store','public');
@@ -61,34 +62,42 @@ class FormulirController extends Controller
        if($request->rapor){
 
            $data['rapor'] = $request->file('rapor')->store('assets/store','public');
+       }else{
+           $data['rapor'] = null;
        }
        if($request->kip){
 
            $data['kip'] = $request->file('kip')->store('assets/store','public');
+       }else{
+           $data['kip'] = null;
        }
-       if($request->prestasu){
+       if($request->prestasi){
            $data['prestasi'] = $request->file('prestasi')->store('assets/store','public');
 
+       }else{
+           $data['prestasi'] = null;
        }
        if($request->sktm){
-
            $data['sktm'] = $request->file('sktm')->store('assets/store','public');
+       }else{
+           $data['sktm'] = null;
        }
        if($request->ktp_ortu){
 
            $data['ktp_ortu'] = $request->file('ktp_ortu')->store('assets/store','public');
-       }
-       if($request->ijazah){
-           $data['ijazah'] = $request->file('ijazah')->store('assets/store','public');
-
+       }else{
+           $data['ktp_ortu'] = null;
        }
        if($request->skot){
            $data['skot'] = $request->file('skot')->store('assets/store','public');
 
+       }else{
+           $data['skot'] = null;
        }
        if($request->hafidz){
            $data['hafidz'] = $request->file('hafidz')->store('assets/store','public');
-
+       }else{
+           $data['hafidz'] = null;
        }
 
         Attachments::updateOrCreate(
