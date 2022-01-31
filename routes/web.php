@@ -57,6 +57,7 @@ Route::prefix('admin')
         Route::get('/profile',[FormulirController::class,'Profile'])->name('profile.mahasiswa');
         Route::PUT('/profile-update/{id}',[FormulirController::class,'UpdateProfile'])->name('update.profile.mahasiswa');
         Route::POST('/cetakPDF',[FormulirController::class,'PrintPdf'])->name('PrintPDF');
+        Route::POST('/changePhoto',[MahasiswaController::class,'changePhoto'])->name('changePhoto');
        
     });
     Route::post('/register-mahasiswa', [MahasiswaController::class, 'RegisterMahasiwa'])->name('register.mahasiswa');

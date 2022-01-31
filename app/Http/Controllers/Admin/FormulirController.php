@@ -30,7 +30,7 @@ class FormulirController extends Controller
     {
         
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
-
+        return $request->all();
         
         $mahasiswa->update([
             'jurusan_id' => request()->jurusan_id,
@@ -48,6 +48,10 @@ class FormulirController extends Controller
        }
        if($request->bukti_pembayaran){
         $data['bukti_pembayaran'] = $request->file('bukti_pembayaran')->store('assets/store','public');
+
+       }
+       if($request->ijazah){
+        $data['ijazah'] = $request->file('ijazah')->store('assets/store','public');
 
        }
        if($request->pas_poto){
@@ -89,7 +93,7 @@ class FormulirController extends Controller
 
         Attachments::updateOrCreate(
             [
-                'user_id' => $request->user_id
+                'user_id' => Auth::user()->id
             ],
             [
                 'penerimaan_id' => $request->penerimaan_id,
@@ -123,6 +127,7 @@ class FormulirController extends Controller
     public function biostore(Request $request)
     {
         $data = $request->all();
+        
         $data['user_id'] =  Auth::user()->id;
 
         if ($request->nik != null) {

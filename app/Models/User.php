@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'nisn',
         'roles',
+        'photo',
         'password_sementara'
     ];
 

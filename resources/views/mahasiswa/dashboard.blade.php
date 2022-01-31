@@ -27,8 +27,9 @@
             <div class="box">
                 <div class="box-body text-center">
                     <h5>Foto Siswa</h5>
+                    <img src="{{ Storage::url( Auth::user()->photo) }}" class="w-100" alt="">
                     <br>
-           <button type="button" class="btn  btn-warning">Warning</button>
+           <button type="button" class="btn  btn-warning" data-toggle="modal" data-target="#modal-default">Change Foto</button>
 
                 </div>
             </div>
@@ -63,4 +64,28 @@
     <!-- /.row (main row) -->
 
   </section>
+
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Update Photo Profile</h4>
+        </div>
+        <div class="modal-body">
+            <form action="{{ route('changePhoto') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="photo">
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary pull-left"> Kirim</button>
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 @endsection

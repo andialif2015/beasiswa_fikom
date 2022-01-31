@@ -8,6 +8,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -200,5 +201,17 @@ class MahasiswaController extends Controller
             return back()->with('error', $e->getMessage());
         }
 
+    }
+
+    public function changePhoto(Request $request)
+    {
+        
+        $photo = $request->file('photo')->store('assets/photo','public');
+        $user = User::findOrFail(Auth::user()->id);
+        $user->update([
+            'photo' => $photo
+        ]);
+        return redirect()->route('dashboard.mahasiswa')->with('success', 'data berhasil disimpan');
+        
     }
 }

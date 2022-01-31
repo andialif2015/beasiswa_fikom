@@ -425,7 +425,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-12 text-center">
-              <h5 class="mt-2">{{ $penerimaan[4]->name }}</h5>
+              <h5 class="mt-2">{{ $penerimaan[4]->name }} </h5>
             </div>
           </div>
         </div>
@@ -435,7 +435,7 @@
           <div class="row">
             <form action="{{ route('mahasiswa.update.data') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div id="{{ $penerimaan[4]->id}}" style="display: none">
+            <div id="{{ $penerimaan[4]->id}}" >
               <div class="row">
                 <div class="col-lg-4">
                   <div class="form-group @error('kartu_keluarga') has-error @enderror">
@@ -695,17 +695,17 @@
 <script type="text/javascript">
   $(document).ready(function()
 {
-  let jurusan_id = $("#jurusan_id").val();
-  let penerimaan_id = $("#penerimaan").val();
-
-  $(".penerimaan").val(penerimaan_id);
-  $(".jurusan_id").val(jurusan_id);
+  
 $("#penerimaan").change(function()
 {
   var id=$(this).val();
   console.log(id);
   var dataString = 'id='+ id;
-  console.log(dataString);
+  let jurusan_id = $("#jurusan_id").val();
+  let penerimaan_id = $("#penerimaan").val();
+
+  $(".penerimaan").val(penerimaan_id);
+  $(".jurusan_id").val(jurusan_id);
 
   if(id == 1){
     $('#modal{{ $penerimaan[0]->id }}').modal('show');
