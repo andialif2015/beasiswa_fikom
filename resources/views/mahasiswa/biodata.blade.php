@@ -308,21 +308,21 @@
                                 @csrf
                                    <div class="form-group @error('noKK') has-error @enderror">
                                      <label for="exampleInputEmail1">NO KK  </label>
-                                     <input type="number" required class="form-control " value="{{ old('noKK') }}"  name="noKK" placeholder="Masukan Nomor KK">
+                                     <input type="number" required class="form-control " value="{{ old('noKK') ?? $pemilikkartu == null ? '' : $pemilikkartu->noKK }}"  name="noKK" placeholder="Masukan Nomor KK">
                                      @error('noKK')
                                      <span class="help-block">{{ $message }}</span>
                                     @enderror
                                    </div>
                                    <div class="form-group @error('nama_kk') has-error @enderror">
                                       <label for="exampleInputEmail1">NAMA KEPALA KELUARGA  </label>
-                                      <input type="text" required class="form-control" name="nama_kk" value="{{ old('nama_kk') }}"  placeholder="Masukan Nama Kepala Keluarga">
+                                      <input type="text" required class="form-control" name="nama_kk" value="{{ old('nama_kk') ?? $pemilikkartu == null ? '' : $pemilikkartu->nama_kk }}"  placeholder="Masukan Nama Kepala Keluarga">
                                       @error('nama_kk')
                                       <span class="help-block">{{ $message }}</span>
                                         @enderror
                                     </div>
                                    <div class="form-group @error('kip') has-error @enderror">
                                      <label for="exampleInputPassword1">KIP (Jika ada)   </label>
-                                     <input type="text" class="form-control " name="kip" value="{{ old('kip') }}"  placeholder="Masukan KIP">
+                                     <input type="text" class="form-control " name="kip" value="{{ old('kip')?? $pemilikkartu == null ? '' : $pemilikkartu->kip }}"  placeholder="Masukan KIP">
                                      @error('kip')
                                      <span class="help-block">{{ $message }}</span>
                                         @enderror
@@ -330,7 +330,7 @@
                                    </div>
                                    <div class="form-group @error('kks') has-error @enderror">
                                     <label for="exampleInputPassword1">KKS (Jika ada) </label>
-                                    <input type="text" class="form-control " name="kks"  value="{{ old('kks') }}" placeholder="Masukan KKS">
+                                    <input type="text" class="form-control " name="kks"  value="{{ old('kks') ?? $pemilikkartu == null ? '' : $pemilikkartu->kks }}" placeholder="Masukan KKS">
                                     @error('kks')
                                     <span class="help-block">{{ $message }}</span>
                                     @enderror
@@ -338,7 +338,7 @@
                                   </div>
                                   <div class="form-group @error('pkh') has-error @enderror">
                                     <label for="exampleInputPassword1">PKH (Jika ada) </label>
-                                    <input type="text" class="form-control " name="pkh"  value="{{ old('pkh') }}" placeholder="Masukan PKH">
+                                    <input type="text" class="form-control " name="pkh"  value="{{ old('pkh') ?? $pemilikkartu == null ? '' : $pemilikkartu->pkh}}" placeholder="Masukan PKH">
                                     @error('pkh')
                                     <span class="help-block">{{ $message }}</span>
                                     @enderror

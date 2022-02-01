@@ -164,15 +164,17 @@ class FormulirController extends Controller
                     'user_id' => $data['user_id']
                 ],$data
             ); 
-        }elseif ($request->no_kk != null) {
+        }elseif ($request->noKK != null) {
+            $data['noKK'] = $request->input('noKK');
+            $data['nama_kk'] = $request->input('nama_kk');
             if($request->kip != null){
-                $data['kip'] = $request->file('kip')->store('assets/attachment','public');
+                $data['kip'] = $request->input('kip');
             }
             if ($request->kks != null) {
-                $data['kks'] = $request->file('kks')->store('assets/attachment','public');
+                $data['kks'] = $request->input('kks');
             }
             if ($request->pkh != null) {
-                $data['pkh'] = $request->file('pkh')->store('assets/attachment','public');
+                $data['pkh'] = $request->input('pkh');
             }
             PemilikKartu::updateOrCreate(
                 [
