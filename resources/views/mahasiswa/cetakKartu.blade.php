@@ -30,11 +30,11 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                @if (Auth::user()->attact())
+                @if ($attachment)
+                <button type="submit" class="btn btn-primary">Submit</button>
+                
+                @else
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">Submit</button>
-
-                  @else
-                  <button type="submit" class="btn btn-primary">Submit</button>
                 @endif
               </div>
             </form>

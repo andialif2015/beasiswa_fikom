@@ -60,4 +60,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Attachments::class);
     }
+    public function biodata()
+    {
+        return $this->hasOne(Biodata::class);
+    }
+    public function lulusan()
+    {
+        return $this->hasOne(Lulusan::class);
+    }
 }

@@ -193,7 +193,9 @@ class FormulirController extends Controller
     }
 
     public function cetakPdf(){
-        return view('mahasiswa.cetakKartu');
+        $attachment = Attachments::with(['penerimaan'])->where('user_id',Auth::user()->id)->first();
+
+        return view('mahasiswa.cetakKartu',compact('attachment'));
 
     }
     public function PrintPdf()

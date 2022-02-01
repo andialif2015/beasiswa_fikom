@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Cetak Kartu Pendaftaran!</title>
   </head>
   <body>
     <h5 class="text-center"> KARTU PENDAFTARAN MAHASISWA BARU <br> STKIP PGRI PACITAN <br> TAHUN 2022 </h5>
@@ -18,30 +18,30 @@
             <th width="35%">NO PENDAFTARAN</th>
             <th  width="5%">:</th>
             <th>{{ $user->transaksi->no_transaksi }}</th>
-            <th>Foto</th>
+            <th><img src="{{ public_path('storage/'.Auth::user()->photo) }}" class="w-10" style="height: 100px;width:100px !important;border-raidus:10px;" alt=""></th>
           </tr>
           <tr>
             <th width="35%">NIK</th>
             <th  width="5%">:</th>
-            <th>Last</th>
+            <th>{{ Auth::user()->biodata->nik ?? "-" }}</th>
             <th></th>
           </tr>
           <tr>
             <th width="35%">TEMPAT DAN TGL LAHIR</th>
             <th  width="5%">:</th>
-            <th>{{ $user->mahasiswa->tempat_lahir }}</th>
+            <th>{{ $user->mahasiswa->tempat_lahir ?? "-" }}</th>
             <th></th>
           </tr>
           <tr>
             <th width="35%">ASAL SEKOLAH</th>
             <th  width="5%">:</th>
-            <th>Last</th>
+            <th>{{ Auth::user()->lulusan->asal_sekolah ?? "-" }}</th>
             <th></th>
           </tr>
           <tr>
             <th width="35%">JURUSAN YANG DIPILIH</th>
             <th  width="5%">:</th>
-            <th>Last</th>
+            <th>{{ Auth::user()->mahasiswa->jurusan->name ?? "-" }}</th>
             <th>Tanda Tangan</th>
           </tr>
           <tr>
