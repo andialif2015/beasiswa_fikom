@@ -133,12 +133,21 @@
                                     
                                     <div class="form-group @error('pemberi_rekomendasi') has-error @enderror ">
                                       <label for="exampleInputPassword1">Pemberi Rekomendasi   </label>
+                                      @if($biodata)
                                       <select name="pemberi_rekomendasi" class="form-control">
                                         <option value="DOSEN" {{ $biodata->pemberi_rekomendasi  == "DOSEN" ? "selected" : "" }}>DOSEN</option>
-                                        <option value="MAHASISWA" {{  $biodata->pemberi_rekomendasi  == "MAHASISWA" ? "selected" : "" }} }}>MAHASISWA</option>
-                                        <option value="KARYAWAN" {{  $biodata->pemberi_rekomendasi  == "KARYAWAN" ? "selected" : "" }} }}>KARYAWAN</option>
-                                        <option value="ALUMNI" {{  $biodata->pemberi_rekomendasi  == "ALUMNI" ? "selected" : "" }} }}>ALUMNI</option>
+                                        <option value="MAHASISWA" {{  $biodata->pemberi_rekomendasi  == "MAHASISWA" ? "selected" : "" }} >MAHASISWA</option>
+                                        <option value="KARYAWAN" {{  $biodata->pemberi_rekomendasi  == "KARYAWAN" ? "selected" : "" }} >KARYAWAN</option>
+                                        <option value="ALUMNI" {{  $biodata->pemberi_rekomendasi  == "ALUMNI" ? "selected" : "" }} >ALUMNI</option>
                                       </select>
+                                      @else
+                                        <select name="pemberi_rekomendasi" class="form-control">
+                                        <option value="DOSEN">DOSEN</option>
+                                        <option value="MAHASISWA" >MAHASISWA</option>
+                                        <option value="KARYAWAN">KARYAWAN</option>
+                                        <option value="ALUMNI" >ALUMNI</option>
+                                      </select>
+                                      @endif
                                       @error('pemberi_rekomendasi')
                                       <span class="help-block">{{ $message }}</span>
                                       @enderror
