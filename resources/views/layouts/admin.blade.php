@@ -135,7 +135,15 @@
          
          
         </li>
-        <li class="{{ setActive('admin/jurusan') }}">
+        <li class="{{ setActive('admin/jurusan') }} {{ setActive('admin/penerimaan') }} {{ setActive('admin/transaction') }} {{ setActive('admin/video') }}  treeview menu-open">
+          <a href="#">
+            <i class="fa fa-th"></i> <span>Setting</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+             <li class="{{ setActive('admin/jurusan') }}">
           <a href="{{ route('admin.jurusan.index') }}">
             <i class="fa fa-users"></i> <span>Jurusan</span>
            
@@ -155,11 +163,13 @@
            
           </a>
         </li>
-        <li class="{{ setActive('admin/video') }}">
+            <li class="{{ setActive('admin/video') }}">
           <a href="{{ route('admin.video.index') }}">
             <i class="fa fa-users"></i> <span>Youtube</span>
            
           </a>
+        </li>
+          </ul>
         </li>
       </ul>
     </section>

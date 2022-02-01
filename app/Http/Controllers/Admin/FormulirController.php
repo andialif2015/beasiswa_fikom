@@ -140,7 +140,7 @@ class FormulirController extends Controller
         $data['user_id'] =  Auth::user()->id;
 
         if ($request->nik != null) {
-            $data['pas_photo'] = $request->file('pas_photo')->store('assets/attachment','public');
+            $data['nik'] = $request->input('nik');
             Biodata::updateOrCreate(
                 [
                     'user_id' => $data['user_id']
@@ -204,6 +204,10 @@ class FormulirController extends Controller
     {
         $user = User::with('mahasiswa','transaksi')->findOrFail(Auth::user()->id);
         // return $user;
+        $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
+        $mahasiswa->update([
+            'status' => "BERKAS LENGKAP"
+            ]);
         $pdf = PDF::loadview('pdf.cetakKartuPdf',compact('user'));
         return $pdf->stream();
     }

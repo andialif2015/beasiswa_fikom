@@ -21,6 +21,18 @@
             <th><img src="{{ public_path('storage/'.Auth::user()->photo) }}" class="w-10" style="height: 100px;width:100px !important;border-raidus:10px;" alt=""></th>
           </tr>
           <tr>
+            <th width="35%">Nama</th>
+            <th  width="5%">:</th>
+            <th>{{ Auth::user()->name ?? "-" }}</th>
+            <th></th>
+          </tr>
+          <tr>
+            <th width="35%">NISN</th>
+            <th  width="5%">:</th>
+            <th>{{ Auth::user()->nisn ?? "-" }}</th>
+            <th></th>
+          </tr>
+          <tr>
             <th width="35%">NIK</th>
             <th  width="5%">:</th>
             <th>{{ Auth::user()->biodata->nik ?? "-" }}</th>

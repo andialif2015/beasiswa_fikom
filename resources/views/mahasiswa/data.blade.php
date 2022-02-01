@@ -145,6 +145,7 @@
                         <span class="help-block">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="data" id="Biodata"></div>
                     <input name="user_id" type="hidden" value="{{ Auth::user()->id}}">
                   </div>
                   
@@ -818,23 +819,468 @@ $("#penerimaan").change(function()
   $(".jurusan_id").val(jurusan_id);
 
   if(id == 1){
-    $('#modal{{ $penerimaan[0]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="col-lg-12">
+                  <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                    <label for="exampleInputEmail1">Kartu Keluarga</label>
+                    <input type="file" name="kartu_keluarga" required class="form-control">
+                    @error('kartu_keluarga')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('nisn') has-error @enderror">
+                    <label for="exampleInputEmail1">NISN</label>
+                    <input type="file" required name="nisn" class="form-control">
+                    @error('nisn')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                    <input type="file" required name="bukti_pembayaran" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('pas_poto') has-error @enderror">
+                    <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                    <input type="file" required name="pas_poto" class="form-control">
+                    @error('pas_poto')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('rapor') has-error @enderror">
+                    <label for="exampleInputEmail1">Rapor SMT 1-5</label>
+                    <input type="file" required name="rapor" class="form-control">
+                    @error('rapor')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('kip') has-error @enderror">
+                    <label for="exampleInputEmail1">KIP/KKS/PKH</label>
+                    <input type="file" required name="kip" class="form-control">
+                    @error('kip')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('prestasi') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Prestasi (Jika Ada)</label>
+                    <input type="file" name="prestasi" class="form-control">
+                    @error('prestasi')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('sktm') has-error @enderror">
+                    <label for="exampleInputEmail1">SKTM / Surat Keterangan Penghasilan Orang Tua</label>
+                    <input type="file" required name="sktm" class="form-control">
+                    @error('sktm')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('ktp_ortu') has-error @enderror">
+                    <label for="exampleInputEmail1">KTP Orang Tua & Pendaftaran</label>
+                    <input type="file" required name="ktp_ortu" class="form-control">
+                    @error('ktp_ortu')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+    `);
   }if(id==2){
-    $('#modal{{ $penerimaan[1]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="col-lg-12">
+                  <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                    <label for="exampleInputEmail1">Kartu Keluarga</label>
+                    <input type="file" required name="kartu_keluarga" class="form-control">
+                    @error('kartu_keluarga')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('nisn') has-error @enderror">
+                    <label for="exampleInputEmail1">NISN</label>
+                    <input type="file" required name="nisn" class="form-control">
+                    @error('nisn')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                    <input type="file" required name="bukti_pembayaran" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Ijazah/Transkrip/SKL</label>
+                    <input type="file" required name="ijazah" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('pas_poto') has-error @enderror">
+                    <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                    <input type="file" required name="pas_poto" class="form-control">
+                    @error('pas_poto')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('rapor') has-error @enderror">
+                    <label for="exampleInputEmail1">Rapor SMT 1-5</label>
+                    <input type="file" required name="rapor" class="form-control">
+                    @error('rapor')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+    `)
   }if(id==3){
-    $('#modal{{ $penerimaan[2]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                  <label for="exampleInputEmail1">Kartu Keluarga</label>
+                  <input type="file" required name="kartu_keluarga" class="form-control">
+                  @error('kartu_keluarga')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group @error('nisn') has-error @enderror">
+                  <label for="exampleInputEmail1">NISN</label>
+                  <input type="file" required name="nisn" class="form-control">
+                  @error('nisn')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                  <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                  <input type="file" required name="bukti_pembayaran" class="form-control">
+                  @error('bukti_pembayaran')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                  <label for="exampleInputEmail1">Ijazah/Transkrip/SKL</label>
+                  <input type="file" required name="ijazah" class="form-control">
+                  @error('bukti_pembayaran')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group @error('pas_poto') has-error @enderror">
+                  <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                  <input type="file" required name="pas_poto" class="form-control">
+                  @error('pas_poto')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group @error('rapor') has-error @enderror">
+                  <label for="exampleInputEmail1">Rapor SMT 1-5</label>
+                  <input type="file" required name="rapor" class="form-control">
+                  @error('rapor')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+            </div>
+    `);
   }
   if(id==4){
-       $('#modal{{ $penerimaan[3]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="row">
+              <div class="col-lg-12">
+                <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                  <label for="exampleInputEmail1">Kartu Keluarga</label>
+                  <input type="file" required name="kartu_keluarga" class="form-control">
+                  @error('kartu_keluarga')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group @error('nisn') has-error @enderror">
+                  <label for="exampleInputEmail1">NISN</label>
+                  <input type="file" required name="nisn" class="form-control">
+                  @error('nisn')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                  <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                  <input type="file" required name="bukti_pembayaran" class="form-control">
+                  @error('bukti_pembayaran')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                  <label for="exampleInputEmail1">Ijazah/Transkrip/SKL</label>
+                  <input type="file" required name="ijazah" class="form-control">
+                  @error('bukti_pembayaran')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group @error('pas_poto') has-error @enderror">
+                  <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                  <input type="file" required name="pas_poto" class="form-control">
+                  @error('pas_poto')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="form-group @error('rapor') has-error @enderror">
+                  <label for="exampleInputEmail1">Rapor SMT 1-5</label>
+                  <input type="file" required name="rapor" class="form-control">
+                  @error('rapor')
+                  <span class="help-block">{{ $message }}</span>
+                @enderror
+                </div>
+              </div>
+            </div>`);
   }
   if(id==5){
-       $('#modal{{ $penerimaan[4]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                    <label for="exampleInputEmail1">Kartu Keluarga</label>
+                    <input type="file" required name="kartu_keluarga" class="form-control">
+                    @error('kartu_keluarga')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('nisn') has-error @enderror">
+                    <label for="exampleInputEmail1">NISN</label>
+                    <input type="file" required name="nisn" class="form-control">
+                    @error('nisn')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                    <input type="file" required name="bukti_pembayaran" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('pas_poto') has-error @enderror">
+                    <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                    <input type="file" required name="pas_poto" class="form-control">
+                    @error('pas_poto')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('rapor') has-error @enderror">
+                    <label for="exampleInputEmail1">Rapor SMT 1-5</label>
+                    <input type="file" required name="rapor" class="form-control">
+                    @error('rapor')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('sktm') has-error @enderror">
+                    <label for="exampleInputEmail1">SKTM / Surat Keterangan Penghasilan Orang Tua</label>
+                    <input type="file" required name="sktm" class="form-control">
+                    @error('sktm')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('prestasi') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Prestasi (Jika Ada)</label>
+                    <input type="file" required name="prestasi" class="form-control">
+                    @error('prestasi')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+              </div>
+    `);
   }
   if(id==6){
-       $('#modal{{ $penerimaan[5]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                    <label for="exampleInputEmail1">Kartu Keluarga</label>
+                    <input type="file" required name="kartu_keluarga" class="form-control">
+                    @error('kartu_keluarga')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('nisn') has-error @enderror">
+                    <label for="exampleInputEmail1">NISN</label>
+                    <input type="file" required name="nisn" class="form-control">
+                    @error('nisn')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                    <input type="file" required name="bukti_pembayaran" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('pas_poto') has-error @enderror">
+                    <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                    <input type="file" required name="pas_poto" class="form-control">
+                    @error('pas_poto')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Ijazah/Transkrip/SKL</label>
+                    <input type="file" required name="ijazah" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('skot') has-error @enderror">
+                    <label for="exampleInputEmail1">Surat Kematian Orang Tua</label>
+                    <input type="file" required name="skot" class="form-control">
+                    @error('skot')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+              </div>`);
   }
   if(id==7){
-       $('#modal{{ $penerimaan[6]->id }}').modal('show');
+    $('#Biodata').empty();
+    $('#Biodata').append(`
+    <div class="row">
+                <div class="col-lg-12">
+                  <div class="form-group @error('kartu_keluarga') has-error @enderror">
+                    <label for="exampleInputEmail1">Kartu Keluarga</label>
+                    <input type="file" required name="kartu_keluarga" class="form-control">
+                    @error('kartu_keluarga')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('nisn') has-error @enderror">
+                    <label for="exampleInputEmail1">NISN</label>
+                    <input type="file" required name="nisn" class="form-control">
+                    @error('nisn')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Bukti Pembayaran</label>
+                    <input type="file" required name="bukti_pembayaran" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('pas_poto') has-error @enderror">
+                    <label for="exampleInputEmail1">Pas Foto 4x6</label>
+                    <input type="file" required name="pas_poto" class="form-control">
+                    @error('pas_poto')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('bukti_pembayaran') has-error @enderror">
+                    <label for="exampleInputEmail1">Ijazah/Transkrip/SKL</label>
+                    <input type="file" required name="ijazah" class="form-control">
+                    @error('bukti_pembayaran')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('sktm') has-error @enderror">
+                    <label for="exampleInputEmail1">SKTM / Surat Keterangan Penghasilan Orang Tua</label>
+                    <input type="file" required name="sktm" class="form-control">
+                    @error('sktm')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="form-group @error('hafidz') has-error @enderror">
+                    <label for="exampleInputEmail1">Surat keterangan Hafizh Qur'an</label>
+                    <input type="file" required name="hafidz" class="form-control">
+                    @error('hafidz')
+                    <span class="help-block">{{ $message }}</span>
+                  @enderror
+                  </div>
+                </div>
+              </div>
+    `);
   }
   });
 
