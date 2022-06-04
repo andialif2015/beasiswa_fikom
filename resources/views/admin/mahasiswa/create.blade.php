@@ -7,20 +7,20 @@
             <small>Mahasiswa</small>
           </h1>
     </div>
-   
+
   </section>
   <section class="content">
    <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            
-  
+
+
           <div class="box container">
-            
+
             <!-- /.box-header -->
             <div class="box-body">
-              
-                   <form action="{{ route('admin.mahasiswa.store') }}" method="post">
+
+                   <form action="store" method="post">
                     @csrf
                        <div class="form-group @error('nisn') has-error @enderror">
                          <label for="exampleInputEmail1">NISN</label>
@@ -57,12 +57,12 @@
                         <input type="number" class="form-control " name="phone" value="{{ old('phone') }}" placeholder="Masukan Tempat lahir">
                         @error('phone')
                         <span class="help-block">{{ $message }}</span>
-                        
+
                         @enderror
                       </div>
                        <button type="submit" class="btn btn-primary">Daftar Mahasiswa</button>
                      </form>
-                
+
             </div>
             <!-- /.box-body -->
           </div>

@@ -24,21 +24,22 @@ class FormulirController extends Controller
         $jurusan = Jurusan::all();
         $mahasiswa = Mahasiswa::with(['jurusan'])->where('user_id',Auth::user()->id)->first();
         $attachment = Attachments::with(['penerimaan'])->where('user_id',Auth::user()->id)->first();
+        // dd($attachment);
         return view('mahasiswa.data',compact('penerimaan','jurusan','mahasiswa','attachment'));
     }
 
     public function updateData(Request $request)
     {
-        
+
         $mahasiswa = Mahasiswa::where('user_id',Auth::user()->id)->first();
-        
+
         $mahasiswa->update([
             'jurusan_id' => request()->jurusan_id,
             'penerimaan_id' => request()->penerimaan_id,
         ]);
 
         $data = request()->all();
-        
+
 
        if($request->kartu_keluarga){
             $data['kartu_keluarga'] = $request->file('kartu_keluarga')->store('assets/attachment','public');
@@ -136,8 +137,9 @@ class FormulirController extends Controller
     public function biostore(Request $request)
     {
         $data = $request->all();
-        
+
         $data['user_id'] =  Auth::user()->id;
+        $data['pas_photo'] = '';
 
         if ($request->nik != null) {
             $data['nik'] = $request->input('nik');
@@ -163,7 +165,7 @@ class FormulirController extends Controller
                 [
                     'user_id' => $data['user_id']
                 ],$data
-            ); 
+            );
         }elseif ($request->noKK != null) {
             $data['noKK'] = $request->input('noKK');
             $data['nama_kk'] = $request->input('nama_kk');
@@ -236,7 +238,7 @@ class FormulirController extends Controller
                 'email' => $request->email,
             ]);
         } else {
-           
+
             $user->update([
                 'name'      => $request->input('name'),
                 'email'     => $request->input('email'),
@@ -245,7 +247,7 @@ class FormulirController extends Controller
                 'password_sementara'  => $request->input('password')
             ]);
         }
-        
+
 
         $mahasiswa->update([
             'phone' => $request->phone,

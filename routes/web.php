@@ -22,12 +22,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     // $transaction= Transaction::first();
+//     // return view('pageSuccess',compact('transaction'));
+//     $video = Video::latest()->first();
+//     return view('homePage',compact('video'));
+// })->name('homepage');
 Route::get('/', function () {
     // $transaction= Transaction::first();
     // return view('pageSuccess',compact('transaction'));
     $video = Video::latest()->first();
     return view('homePage',compact('video'));
-});
+})->name('homepage');
+
+
+// Route::get('/register', function(){
+//     return view('auth.register');
+// });
 
 Auth::routes();
 
@@ -37,6 +48,7 @@ Route::prefix('admin')
     ->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('mahasiswa', MahasiswaController::class, ['as' => 'admin']);
+        Route::post('/mahasiswa/store', [MahasiswaController::class, 'store']);
         Route::resource('jurusan', JurusanController::class, ['as' => 'admin']);
         Route::resource('penerimaan', PenerimnaanController::class, ['as' => 'admin']);
         Route::resource('video', VideoController::class, ['as' => 'admin']);
@@ -58,8 +70,8 @@ Route::prefix('admin')
         Route::PUT('/profile-update/{id}',[FormulirController::class,'UpdateProfile'])->name('update.profile.mahasiswa');
         Route::POST('/cetakPDF',[FormulirController::class,'PrintPdf'])->name('PrintPDF');
         Route::POST('/changePhoto',[MahasiswaController::class,'changePhoto'])->name('changePhoto');
-       
+
     });
     Route::post('/register-mahasiswa', [MahasiswaController::class, 'RegisterMahasiwa'])->name('register.mahasiswa');
 
-Auth::routes(['register' => false]);
+Auth::routes(['register' => true]);

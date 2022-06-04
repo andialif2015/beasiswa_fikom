@@ -1,17 +1,18 @@
 @extends('layouts.mahasiswa')
 @section('content')
 <section class="content">
+   @if($mahasiswa->count() > 0 )
     <div class="container">
      <div class="row">
          <div class="col-xs-12">
-             
-   
+
+
            <div class="box container">
-             
+
              <!-- /.box-header -->
              <div class="box-body">
              @if ($attachment)
-            
+
              <div class="row">
              <div class="text-center">
                <h2>Data Berhasil Di input</h2>
@@ -21,6 +22,7 @@
                  <h5>Jalur Penerimaan</h5>
                </div>
                <div class="col-lg-4 mr-auto">
+            
                  <h5>: {{ $mahasiswa->jurusan->name ?? ' ' }} </h5>
                  <h5>: {{ $attachment->penerimaan->name ?? ' ' }} </h5>
                </div>
@@ -148,14 +150,14 @@
                     <div class="data" id="Biodata"></div>
                     <input name="user_id" type="hidden" value="{{ Auth::user()->id}}">
                   </div>
-                  
+
                   <input name="user_id" type="hidden" value="{{ Auth::user()->id}}">
                   <button type="submit"   class="btn btn-primary" id="simpan">Simpan</button>
-                    
+
                 </form>
              @endif
-                    
-                 
+
+
              </div>
              <!-- /.box-body -->
            </div>
@@ -164,8 +166,21 @@
          <!-- /.col -->
        </div>
     </div>
+    @else
+    <div class="container">
+        <div class="row">
+           <div class="col-md-10">
+            <div class="alert alert-warning" role="alert">
+                Data Kosong
+              </div>
+     </div>
+     @endif
+      <!-- ./col -->
+    </div>
+    </div>
      <!-- /.row -->
    </section>
+
 <div class="modal fade" id="modal{{ $penerimaan[0]->id }}" tabindex="-1" role="dialog" aria-labelledby="modalOrderLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -806,7 +821,7 @@
 <script type="text/javascript">
   $(document).ready(function()
 {
-  
+
 $("#penerimaan").change(function()
 {
   var id=$(this).val();

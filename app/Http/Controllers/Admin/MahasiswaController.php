@@ -18,21 +18,21 @@ class MahasiswaController extends Controller
     {
         if (request()->ajax()) {
             $mahasiswa = User::with('transaksi')->where('roles', 'MAHASISWA')->with('mahasiswa')->latest()->get();
-           
+
             return DataTables::of($mahasiswa)
                 ->addIndexColumn()
                 ->addColumn('action', function ($siswa) {
-                    $actionBtn = '<a href="' . route('admin.mahasiswa.edit', $siswa->id) . '" class="edit btn btn-warning btn-sm">Edit</a> 
+                    $actionBtn = '<a href="' . route('admin.mahasiswa.edit', $siswa->id) . '" class="edit btn btn-warning btn-sm">Edit</a>
                     ';
                     // <a href="javascript:void(0)" onClick="Delete(this.id)" id="' . $siswa->id . '" class="delete btn btn-danger btn-sm">Delete</a>
-                   
+
                          if($siswa->transaksi != null){
                              $transaction = '<a href="javascript:void(0)" onClick="Bayar(this.id)" id="' . $siswa->transaksi->id  . '" class="bayar btn btn-info btn-sm">Bayar</a> ';
                          }else{
                              $transaction = '';
                          }
-                         
-                 
+
+
                     $whatsapp =' <a href="https://wa.me/'. $siswa->mahasiswa->phone .'?text=*SELAMAT%20PEMBAYARA%20ANDA%20TELAH%20KAMI%20TERIMA*%20selanjutnya%20silahkan%20anda%20melakukan%20pengisian%20data%20dan%20upload%20berkas%20dengan%20login%20pada%20alamat%20http://pmb.awalcerita.com/login%20dengan%20NISN%20:%20'. $siswa->nisn .'%20dan%20password%20:%20'. $siswa->password_sementara .'" target="_blank" class="btn btn-success btn-sm">Whatsapp</a>';
 
                     return $siswa->mahasiswa->status == "DALAM PROSES" ?  $actionBtn .  $transaction . $whatsapp:$actionBtn . $whatsapp  ;
@@ -44,7 +44,7 @@ class MahasiswaController extends Controller
                          }else{
                              return '';
                          }
-                   
+
                 })
                 ->rawColumns(['action','briva'])
                 ->make(true);
@@ -94,14 +94,7 @@ class MahasiswaController extends Controller
             'tanggal_lahir' => 'required',
         ]);
 
-        $length = 8;
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        $password = $randomString;
+        $password = 'mahasiswa2022';
         DB::beginTransaction();
         try {
             $user = User::create([
@@ -110,6 +103,7 @@ class MahasiswaController extends Controller
                 'roles' => "MAHASISWA",
                 'password' => Hash::make($password),
                 'password_sementara' => $password,
+                'photo' => ''
             ]);
 
             Mahasiswa::create([
@@ -130,6 +124,7 @@ class MahasiswaController extends Controller
            ]);
             DB::commit();
         } catch (\Exception $e) {
+
             DB::rollBack();
             return back();
         }
@@ -181,52 +176,53 @@ class MahasiswaController extends Controller
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+        echo $request->name;
         $password = $randomString;
-        DB::beginTransaction();
-        try {
-            $user = User::create([
-                'name' => $request->name,
-                'nisn' => $request->nisn,
-                'email' => $request->email,
-                'roles' => "MAHASISWA",
-                'password' => Hash::make($password),
-                'password_sementara' => $password,
-            ]);
+        // DB::beginTransaction();
+        // try {
+        //     $user = User::create([
+        //         'name' => $request->name,
+        //         'nisn' => $request->nisn,
+        //         'email' => $request->email,
+        //         'roles' => "MAHASISWA",
+        //         'password' => Hash::make($password),
+        //         'password_sementara' => $password,
+        //     ]);
 
-            Mahasiswa::create([
-                'user_id' => $user->id,
-                'phone' => $request->phone,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'status' => "DALAM PROSES"
-            ]);
+        //     Mahasiswa::create([
+        //         'user_id' => $user->id,
+        //         'phone' => $request->phone,
+        //         'tempat_lahir' => $request->tempat_lahir,
+        //         'tanggal_lahir' => $request->tanggal_lahir,
+        //         'status' => "DALAM PROSES"
+        //     ]);
 
-           $transaction = Transaction::create([
-                'user_id' => $user->id,
-                'no_transaksi' => $no_transaction != null ? $no_transaction->no_transaksi+1 : 2022001,
-                'briva' => $no_transaction != null ? $no_transaction->briva+1 : 9992022001,
-                'nominal' => 300000,
-                'status' => "pending"
-           ]);
-            DB::commit();
+        //    $transaction = Transaction::create([
+        //         'user_id' => $user->id,
+        //         'no_transaksi' => $no_transaction != null ? $no_transaction->no_transaksi+1 : 2022001,
+        //         'briva' => $no_transaction != null ? $no_transaction->briva+1 : 9992022001,
+        //         'nominal' => 300000,
+        //         'status' => "pending"
+        //    ]);
+        //     DB::commit();
 
-            return view('pageSuccess',compact('transaction'));
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return back()->with('error', $e->getMessage());
-        }
+        //     return view('pageSuccess',compact('transaction'));
+        // } catch (\Exception $e) {
+        //     DB::rollBack();
+        //     return back()->with('error', $e->getMessage());
+        // }
 
     }
 
     public function changePhoto(Request $request)
     {
-        
+
         $photo = $request->file('photo')->store('assets/photo','public');
         $user = User::findOrFail(Auth::user()->id);
         $user->update([
             'photo' => $photo
         ]);
         return redirect()->route('dashboard.mahasiswa')->with('success', 'data berhasil disimpan');
-        
+
     }
 }
